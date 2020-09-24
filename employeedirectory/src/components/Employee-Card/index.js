@@ -3,26 +3,35 @@ import "./employeeCard.css";
 
 function EmployeeCard(props) {
   return (
-    <div className="card">
-      <img src={props.image} className="card-img-top" alt={props.name} />
-      <div className="card-body">
-        <ul>
-          <li>
-            <p> Name: </p>
-            {props.firstName} {props.lastName}
-          </li>
-          <li>
-            <p> Email: </p> {props.email}
-          </li>
-          <li>
-            <p> Phone Number: </p>
-            {props.phone}
-          </li>
-          <li>
-            <p> Address: </p>
-            {props.address}
-          </li>
-        </ul>
+    <div className="col-sm-3">
+      <div className="card">
+        <img src={props.image} className="card-img-top" alt={props.name} />
+        <div className="card-body">
+          <ul>
+            <li>
+              <p>
+                {" "}
+                Name: {props.firstName} {props.lastName}
+              </p>
+            </li>
+            <li>
+              <p> Email: {props.email}</p>
+            </li>
+            <li>
+              <p> Phone Number: {props.phone}</p>
+            </li>
+            <li>
+              <p>
+                {" "}
+                Address: {props.address.number} {props.address.name},{" "}
+                {props.city}, {props.country}
+              </p>
+            </li>
+            <li>
+              <p>Age: {props.age}</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
