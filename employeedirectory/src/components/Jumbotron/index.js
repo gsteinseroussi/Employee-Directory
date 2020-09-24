@@ -7,20 +7,20 @@ class Jumbotron extends Component {
     employee: [],
   };
 
-  renderCard(emp) {
-    return (
-      <EmployeeCard
-        firstName={emp[0].name.first}
-        lastName={emp[0].name.last}
-        email={emp[0].email}
-        phone={emp[0].phone}
-        address={emp[0].location.street}
-        image={emp[0].picture.medium}
-      />
-    );
-  }
+  // renderCard(emp) {
+  //   return (
+  //     <EmployeeCard
+  //       firstName={emp[0].name.first}
+  //       lastName={emp[0].name.last}
+  //       email={emp[0].email}
+  //       phone={emp[0].phone}
+  //       address={emp[0].location.street}
+  //       image={emp[0].picture.medium}
+  //     />
+  //   );
+  // }
 
-  runApiCall() {
+  componentDidMount() {
     fetch("https://randomuser.me/api/?results=10")
       .then((res) => res.json())
       .then((result) => {
@@ -36,15 +36,7 @@ class Jumbotron extends Component {
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1 className="display-4">Employee Info</h1>
-          {fetch("https://randomuser.me/api/?results=10")
-            .then((res) => res.json())
-            .then((result) => {
-              this.setState({
-                employee: [result.results],
-              });
-              console.log(this.state.employee);
-            })}
-          {/* {this.state.employee.map((employee) => (
+          {this.state.employee.map((employee) => (
             <EmployeeCard
               firstName={employee.name.first}
               lastName={employee.name.last}
@@ -53,7 +45,7 @@ class Jumbotron extends Component {
               address={employee.location.street}
               image={employee.picture.medium}
             />
-          ))} */}
+          ))}
         </div>
       </div>
     );
