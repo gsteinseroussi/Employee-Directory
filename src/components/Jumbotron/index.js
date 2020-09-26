@@ -27,29 +27,31 @@ class Jumbotron extends Component {
       .then((result) => {
         this.setState({
           employee: result.results,
+          original: result.results,
         });
-        console.log(this.state.employee);
       });
   }
 
   handleClickABC = (event) => {
     event.preventDefault();
     console.log("Sort Alphabetically A-Z");
-    console.log(this.state.employee);
-    const sortedState = this.state.employee.sort((a, b) =>
+    console.log("Employee State", this.state.employee);
+    const arrayToSort = [...this.state.employee];
+    const sortedState = arrayToSort.sort((a, b) =>
       a.name.first > b.name.first ? 1 : -1
     );
-    console.log(sortedState);
     this.setState({
       employee: sortedState,
     });
+    console.log("original array", this.state.original);
   };
 
   handleClickZYX = (event) => {
     event.preventDefault();
     console.log("Sort Alphabetically Z-A");
     console.log(this.state.employee);
-    const sortedState = this.state.employee.sort((a, b) =>
+    const arrayToSort = [...this.state.employee];
+    const sortedState = arrayToSort.sort((a, b) =>
       a.name.first > b.name.first ? -1 : 1
     );
     console.log(sortedState);
@@ -58,21 +60,58 @@ class Jumbotron extends Component {
     });
   };
 
+  handleClickReset = (event) => {
+    event.preventDefault();
+    const originalArray = [...this.state.original];
+    this.setState({
+      employee: originalArray,
+    });
+  };
+
+  handleClickSearch = (event) => {
+    event.preventDefault();
+    const searchName = document.getElementById("search").value;
+    console.log(searchName);
+    const arrayToSearch = [...this.state.employee];
+    console.log(arrayToSearch);
+    const filteredArray = arrayToSearch.filter(
+      (emp) => emp.name.last === searchName
+    );
+    console.log(filteredArray);
+    this.setState({
+      employee: filteredArray,
+    });
+  };
+
   render() {
     return (
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1 className="display-4">Employee Info</h1>
-          <button onClick={this.handleClickABC} id="sortABC">
-            Sort A-Z
-          </button>
-          <button onClick={this.handleClickZYX} id="sortZYX">
-            Sort Z-A
-          </button>
-
+          <div className="row">
+            <button onClick={this.handleClickABC} id="sortABC">
+              Sort A-Z
+            </button>
+            <button onClick={this.handleClickZYX} id="sortZYX">
+              Sort Z-A
+            </button>
+            <button onClick={this.handleClickReset} id="reset">
+              Reset All Filters
+            </button>
+          </div>
+          <div className="row">
+            <input type="text" placeholder="Last Name" id="search"></input>
+            <button
+              type="submit"
+              id="searchBtn"
+              onClick={this.handleClickSearch}
+            >
+              Search by Last Name
+            </button>
+          </div>
           <div className="row">
             {this.state.employee.length === 0 ? (
-              <p></p>
+              <p>There are no profiles to display</p>
             ) : (
               this.state.employee.map((employee) => (
                 <EmployeeCard
