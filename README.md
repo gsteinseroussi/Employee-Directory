@@ -39,3 +39,5 @@ Garrett Stein-Seroussi
 github.com/gsteinseroussi/Employee-Directory
 
 gsteinseroussi@gmail.com
+
+![Employee-Directory Screenshot 1](https://user-images.githubusercontent.com/63983214/94347700-63d98100-0004-11eb-8259-1f87bf5e22f4.jpg)
