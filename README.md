@@ -36,7 +36,9 @@ No license was required for this project.
 
 Garrett Stein-Seroussi
 
-github.com/gsteinseroussi/Employee-Directory
+Github Repository: github.com/gsteinseroussi/Employee-Directory
+
+Deployed Site: https://gsteinseroussi.github.io/Employee-Directory/
 
 gsteinseroussi@gmail.com
 
