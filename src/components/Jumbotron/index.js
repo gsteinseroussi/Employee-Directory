@@ -5,6 +5,7 @@ import EmployeeCard from "../Employee-Card/index";
 class Jumbotron extends Component {
   state = {
     employee: [],
+    original: [],
   };
 
   // renderCard(emp) {
@@ -21,7 +22,7 @@ class Jumbotron extends Component {
   // }
 
   componentDidMount() {
-    fetch("https://randomuser.me/api/?results=20")
+    fetch("https://randomuser.me/api/?results=20&nat=us")
       .then((res) => res.json())
       .then((result) => {
         this.setState({
@@ -31,12 +32,25 @@ class Jumbotron extends Component {
       });
   }
 
-  handleClick = (event) => {
+  handleClickABC = (event) => {
     event.preventDefault();
-    console.log("Sort Alphabetically");
+    console.log("Sort Alphabetically A-Z");
     console.log(this.state.employee);
     const sortedState = this.state.employee.sort((a, b) =>
       a.name.first > b.name.first ? 1 : -1
+    );
+    console.log(sortedState);
+    this.setState({
+      employee: sortedState,
+    });
+  };
+
+  handleClickZYX = (event) => {
+    event.preventDefault();
+    console.log("Sort Alphabetically Z-A");
+    console.log(this.state.employee);
+    const sortedState = this.state.employee.sort((a, b) =>
+      a.name.first > b.name.first ? -1 : 1
     );
     console.log(sortedState);
     this.setState({
@@ -49,7 +63,13 @@ class Jumbotron extends Component {
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
           <h1 className="display-4">Employee Info</h1>
-          <button onClick={this.handleClick}>Sort Alphabetically</button>
+          <button onClick={this.handleClickABC} id="sortABC">
+            Sort A-Z
+          </button>
+          <button onClick={this.handleClickZYX} id="sortZYX">
+            Sort Z-A
+          </button>
+
           <div className="row">
             {this.state.employee.length === 0 ? (
               <p></p>
@@ -65,6 +85,7 @@ class Jumbotron extends Component {
                   image={employee.picture.large}
                   city={employee.location.city}
                   country={employee.location.country}
+                  state={employee.location.state}
                   age={employee.dob.age}
                 />
               ))

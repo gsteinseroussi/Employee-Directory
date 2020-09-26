@@ -24,7 +24,7 @@ function EmployeeCard(props) {
               <p>
                 {" "}
                 Address: {props.address.number} {props.address.name},{" "}
-                {props.city}, {props.country}
+                {props.city}, {props.state} {props.country}
               </p>
             </li>
             <li>
