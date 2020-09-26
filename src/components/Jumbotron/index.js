@@ -1,25 +1,13 @@
 import React, { Component } from "react";
 import "./Jumbotron.css";
 import EmployeeCard from "../Employee-Card/index";
+import SortButtons from "../Sort-Buttons/index";
 
 class Jumbotron extends Component {
   state = {
     employee: [],
     original: [],
   };
-
-  // renderCard(emp) {
-  //   return (
-  //     <EmployeeCard
-  //       firstName={emp[0].name.first}
-  //       lastName={emp[0].name.last}
-  //       email={emp[0].email}
-  //       phone={emp[0].phone}
-  //       address={emp[0].location.street}
-  //       image={emp[0].picture.medium}
-  //     />
-  //   );
-  // }
 
   componentDidMount() {
     fetch("https://randomuser.me/api/?results=20&nat=us")
@@ -89,18 +77,19 @@ class Jumbotron extends Component {
         <div className="container">
           <h1 className="display-4">Employee Info</h1>
           <div className="row">
-            <button onClick={this.handleClickABC} id="sortABC">
-              Sort A-Z
-            </button>
-            <button onClick={this.handleClickZYX} id="sortZYX">
-              Sort Z-A
-            </button>
-            <button onClick={this.handleClickReset} id="reset">
-              Reset All Filters
-            </button>
+            <SortButtons
+              handleClickABC={this.handleClickABC}
+              handleClickZYX={this.handleClickZYX}
+              handleClickReset={this.handleClickReset}
+            />
           </div>
-          <div className="row">
-            <input type="text" placeholder="Last Name" id="search"></input>
+          <div className="row" id="searchRow">
+            <input
+              type="text"
+              placeholder="Last Name"
+              id="search"
+              className="col-sm-8"
+            ></input>
             <button
               type="submit"
               id="searchBtn"

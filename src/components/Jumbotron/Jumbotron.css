@@ -3,9 +3,21 @@
 }
 
 button {
-  background-color: rgb(127, 246, 255);
+  background-color: rgb(167, 167, 167);
 }
 
 button:hover {
-  background-color: rgb(82, 163, 168);
+  background-color: rgb(126, 123, 123);
+}
+
+#search {
+  margin: auto;
+}
+
+#searchBtn {
+  margin: auto;
+}
+
+#searchRow {
+  margin-top: 2rem;
 }
